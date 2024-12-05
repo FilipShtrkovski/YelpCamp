@@ -1,0 +1,48 @@
+<% layout('layouts/boylerplate') %>
+
+<div id="cluster-map"></div>
+
+<h1>All Campgrounds</h1>
+<div>
+  <a href="/campgrounds/new">Add a New Campground</a>
+</div>
+
+<% for (let camp of campgrounds) {%>
+
+<div class="card mb-3">
+  <div class="row">
+    <div class="col-md-4">
+      <% if (camp.images.length) {%>
+      <img class="img-fluid" src="<%= camp.images[0].url %>" alt="" />
+      <% }else{ %>
+      <img
+        class="img-fluid"
+        src="https://res.cloudinary.com/daiuoiqvv/image/upload/v1733058603/YelpCamp/ruwwfsdvqew48whob5zn.jpg"
+        alt=""
+      />
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h2 class="card-title"><%= camp.title %></h2>
+        <p class="card-text"><%= camp.description %></p>
+        <p class="card-text">
+          <small class="text-muted"><%= camp.location %></small>
+        </p>
+        <a class="btn btn-primary" href="/campgrounds/<%= camp.id %>">
+          View <%= camp.title %>
+        </a>
+        <p>Price is: <%= camp.price %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% } %>
+
+<script>
+  const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+  const campgrounds = {features: <%- JSON.stringify(campgrounds) %>}
+</script>
+
+<script src="/javascripts/clusterMaps.js"></script>
