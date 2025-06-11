@@ -21,7 +21,6 @@ const campgroundRouts = require('./router/campgrounds.js')
 const reviewRouts = require('./router/reviews.js')
 const userRouts = require('./router/users.js')
 
-
 const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
 mongoose.connect(dbUrl);
 
@@ -86,10 +85,10 @@ const styleSrcUrls = [
     "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/", 
+    "https://cdn.maptiler.com/",
 ];
 const connectSrcUrls = [
-    "https://api.maptiler.com/", 
+    "https://api.maptiler.com/"
 ];
 
 const fontSrcUrls = [];
@@ -115,9 +114,6 @@ app.use(
     })
 );
 
-
-
-
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStratergy(User.authenticate()))
@@ -131,8 +127,6 @@ app.use((req,res,next)=>{
     res.locals.error = req.flash('error')
     next()
 })
-
-
 
 app.use('/', userRouts)
 app.use('/campgrounds', campgroundRouts)

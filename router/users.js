@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 
 const catchAsync = require('../utils/catchAsync')
-const User = require('../models/user.js')
 const passport = require('passport')
 const { storeReturnTo } = require('../middleware')
 const users = require('../controlers/users.js')

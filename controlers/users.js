@@ -1,6 +1,4 @@
 const User = require('../models/user.js')
-const passport = require('passport')
-const { storeReturnTo } = require('../middleware')
 
 module.exports.renderRegister = (req,res)=>{
     res.render('users/register')
@@ -16,7 +14,6 @@ module.exports.register = async (req, res, next)=>{
             req.flash("success","WELCOME TO YELPCAMP")
             res.redirect('/campgrounds')
         })
-        
     }catch(error){
         req.flash('error', error.message)
         res.redirect('/register')
